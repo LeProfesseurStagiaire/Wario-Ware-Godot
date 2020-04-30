@@ -1,0 +1,313 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://scenes/games/game_02_02/test_mini_jeu_main.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/bg_02.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/danger_halo.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/soucoupe_2.png" type="Texture" id=4]
+[ext_resource path="res://scenes/games/game_02/test_mini_jeu_player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/audio/sound/win.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/sound/lose.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/images/pedals/pedal_l_normal.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/pedals/pedal_l_pressed.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/pedals/pedal_r_normal.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/pedals/pedal_r_pressed.png" type="Texture" id=11]
+[ext_resource path="res://assets/audio/sound/interact.wav" type="AudioStream" id=12]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/Bungee-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 0
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 2.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "change_scene"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Label:custom_fonts/font:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 50 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../win_audio:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://assets/fonts/Bungee-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+outline_size = 10
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 5 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 2.37841, 0.392292 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.180392 ) ]
+}
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 106, 250 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 106, 250 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 106, 250 )
+
+[sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 106, 250 )
+
+[sub_resource type="StyleBoxTexture" id=13]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 106, 250 )
+
+[sub_resource type="StyleBoxTexture" id=14]
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 106, 250 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="TextureRect" parent="."]
+mouse_filter = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="space_ship" type="Node2D" parent="."]
+position = Vector2( 350.994, 80.1905 )
+
+[node name="Sprite" type="Sprite" parent="space_ship"]
+self_modulate = Color( 0, 1, 0.462745, 1 )
+position = Vector2( -0.441406, 8.94568 )
+scale = Vector2( 0.0109831, 0.0109831 )
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="space_ship/Sprite"]
+visible = false
+margin_left = -124.866
+margin_top = -241.064
+margin_right = 119.134
+margin_bottom = -54.8539
+custom_fonts/font = SubResource( 2 )
+text = "Thanks
+"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="space_ship"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="space_ship"]
+autoplay = "idlle"
+anims/idlle = SubResource( 3 )
+
+[node name="win" type="AnimationPlayer" parent="space_ship"]
+anims/win = SubResource( 4 )
+
+[node name="win_pos" type="Position2D" parent="space_ship"]
+position = Vector2( 14.7019, 666.728 )
+
+[node name="player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 368.614, 2476.09 )
+scale = Vector2( 1.4143, 1.4143 )
+
+[node name="spawn" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="enemi" type="Node2D" parent="."]
+
+[node name="enemi_pos" type="Node2D" parent="."]
+
+[node name="pos_y_enemi" type="Position2D" parent="enemi_pos"]
+position = Vector2( 352.998, 1404.29 )
+
+[node name="spawn" type="Node2D" parent="enemi_pos"]
+
+[node name="right" type="Position2D" parent="enemi_pos/spawn"]
+position = Vector2( 555.236, -30.4708 )
+
+[node name="left" type="Position2D" parent="enemi_pos/spawn"]
+position = Vector2( 179.657, -30.4708 )
+
+[node name="ui" type="Node2D" parent="."]
+position = Vector2( -151.052, 813.561 )
+
+[node name="Label" type="Label" parent="ui"]
+margin_left = 150.0
+margin_top = 235.737
+margin_right = 906.0
+margin_bottom = 296.737
+rect_scale = Vector2( 0.989975, 0.989975 )
+custom_fonts/font = SubResource( 6 )
+text = "Click on the pedals to dodge !"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui"]
+autoplay = "idle"
+anims/dead = SubResource( 7 )
+anims/idle = SubResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="ui"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 541.157, -137.697 )
+scale = Vector2( 2.01351, 3.57226 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="win_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="lose_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="pedal_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="left" type="Button" parent="."]
+margin_left = 150.192
+margin_top = 1120.38
+margin_right = 256.192
+margin_bottom = 1370.38
+focus_mode = 0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="right" type="Button" parent="."]
+margin_left = 475.139
+margin_top = 1120.38
+margin_right = 581.139
+margin_bottom = 1370.38
+focus_mode = 0
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tween_completed" from="space_ship/Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="spawn" to="." method="_on_spawn_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="ui/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="button_down" from="left" to="." method="_on_left_button_down"]
+[connection signal="pressed" from="left" to="." method="_on_left_pressed"]
+[connection signal="button_down" from="right" to="." method="_on_right_button_down"]
+[connection signal="pressed" from="right" to="." method="_on_right_pressed"]

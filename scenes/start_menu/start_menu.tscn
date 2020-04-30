@@ -1,0 +1,185 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/start_menu/start_menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/bg_02.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/main_menu/head.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/main_menu/mouse.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/finger.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/main_menu/title.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/main_menu/play_buton.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/Bungee-Regular.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("mouse:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 403.881, 985.804 ), Vector2( 421.092, 1094.81 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("finger:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1000.52, 73.6301 ), Vector2( 1161.16, 33.4716 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("head:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.8 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("title:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -3.40824, 1.97575, -3.40824, 1.97575 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("title:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.05, 1.05 ) ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+outline_size = 7
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 8 )
+
+[node name="main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg_02" type="TextureRect" parent="."]
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="TextureButton" parent="."]
+margin_left = 160.786
+margin_top = 783.048
+margin_right = 857.786
+margin_bottom = 1260.05
+rect_scale = Vector2( 0.612549, 0.612549 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 210.97, 188.587 )
+scale = Vector2( 0.30645, 0.30645 )
+
+[node name="head" type="Sprite" parent="Node2D"]
+position = Vector2( 332.982, 309.132 )
+texture = ExtResource( 3 )
+
+[node name="mouse" type="Sprite" parent="Node2D"]
+position = Vector2( 403.881, 985.804 )
+texture = ExtResource( 4 )
+
+[node name="title" type="Sprite" parent="Node2D"]
+position = Vector2( 656.306, 1352.97 )
+rotation = -0.059485
+texture = ExtResource( 6 )
+
+[node name="finger" type="Sprite" parent="Node2D"]
+position = Vector2( 1000.52, 73.6301 )
+rotation = -2.85773
+scale = Vector2( -1, 1 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+autoplay = "idle"
+anims/idle = SubResource( 1 )
+
+[node name="Label" type="RichTextLabel" parent="."]
+anchor_right = 0.432
+margin_left = 178.996
+margin_top = 680.587
+margin_right = 601.996
+margin_bottom = 760.587
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "
+[center][wave amp=20 freq=10]Game by Ange HUBERT"
+text = "
+Game by Ange HUBERT"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score" type="Label" parent="."]
+margin_top = 1067.03
+margin_right = 747.0
+margin_bottom = 1167.03
+custom_fonts/font = SubResource( 3 )
+text = "best : 0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score2" type="Label" parent="."]
+margin_top = 1264.11
+margin_right = 1259.0
+margin_bottom = 1367.11
+rect_scale = Vector2( 0.593949, 0.593949 )
+custom_fonts/font = SubResource( 3 )
+text = "Music by Arthur : https://opengameart.org/users/arthur"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

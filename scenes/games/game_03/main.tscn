@@ -1,0 +1,158 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scenes/games/game_03/tap_taupe.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/bg_02.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/danger_halo.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/asteroid/asteroid_2.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/asteroid/asteroid_big_l_2.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/asteroid/asteroi_group_2.png" type="Texture" id=6]
+[ext_resource path="res://assets/mat/outline.tres" type="Material" id=7]
+[ext_resource path="res://assets/audio/sound/win.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/sound/lose.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/sound/destroy.wav" type="AudioStream" id=10]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 150.23
+
+[sub_resource type="Animation" id=2]
+resource_name = "taupe_sort"
+tracks/0/type = "value"
+tracks/0/path = NodePath("taupe:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 2.54912, 0.435275 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.278431 ) ]
+}
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://assets/fonts/Bungee-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 76
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 4 )
+
+[node name="tap_taupe" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="asteroid" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="asteroid"]
+modulate = Color( 1, 0.67451, 0.501961, 1 )
+position = Vector2( 372.605, 670.523 )
+scale = Vector2( 0.03, 0.03 )
+texture = ExtResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="asteroid/Sprite"]
+position = Vector2( -27.9414, -2.62988 )
+scale = Vector2( 1.03625, 1.03625 )
+texture = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="asteroid"]
+
+[node name="spawn_shape" type="Panel" parent="asteroid"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 69.0
+margin_top = 297.0
+margin_right = 681.0
+margin_bottom = 1212.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="end_timer" type="Timer" parent="asteroid"]
+
+[node name="taupes" type="Node2D" parent="."]
+
+[node name="taupe" type="Node2D" parent="taupes"]
+position = Vector2( 230.309, 406.118 )
+scale = Vector2( 0.490118, 0.490118 )
+
+[node name="Area2D" type="Area2D" parent="taupes/taupe"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="taupes/taupe/Area2D"]
+shape = SubResource( 1 )
+
+[node name="trou" type="Sprite" parent="taupes/taupe"]
+visible = false
+scale = Vector2( 2.9029, 2.9029 )
+texture = ExtResource( 6 )
+
+[node name="taupe" type="Sprite" parent="taupes/taupe"]
+material = ExtResource( 7 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="taupes/taupe"]
+anims/taupe_sort = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ui" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui"]
+autoplay = "idle"
+anims/idle = SubResource( 3 )
+
+[node name="Label" type="Label" parent="ui"]
+margin_left = 15.6621
+margin_top = 92.6345
+margin_right = 733.662
+margin_bottom = 169.634
+custom_fonts/font = SubResource( 5 )
+text = "tap to destroy !"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="halo_death" type="Sprite" parent="."]
+visible = false
+position = Vector2( 368.692, 676.003 )
+scale = Vector2( 1.90031, 2.84052 )
+texture = ExtResource( 3 )
+
+[node name="tap_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="win_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="lose_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+[connection signal="tween_step" from="asteroid/Tween" to="." method="_on_Tween_tween_step"]
+[connection signal="timeout" from="asteroid/end_timer" to="." method="_on_end_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

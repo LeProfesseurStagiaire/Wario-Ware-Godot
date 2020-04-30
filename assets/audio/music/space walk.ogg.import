@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/space walk.ogg-550157318443c0a9c447c3dc742fe255.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/music/space walk.ogg"
+dest_files=[ "res://.import/space walk.ogg-550157318443c0a9c447c3dc742fe255.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
